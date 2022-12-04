@@ -1,0 +1,236 @@
+{
+     "swagger": "2.0",
+     "info": {
+       "title": "Student Management Api",
+       "version": "v2"
+     },
+     "host": "localhost:4000/",
+     "basePath" : "api/student",
+     "tags" : [
+          {
+               "name": "Students",
+               "description" : "Api for student in the system"
+          }
+     ],
+     "schemes": [
+          "http"
+     ],
+     "consumes": [
+          "application/json"
+     ],
+     "produces" : [
+          "application/json"
+     ],
+     "paths": {
+          "/": {
+               "get": {
+                    "tags": [
+                         "Students"
+                    ],
+                    "summary": "Get all student in system", 
+                    "responses": {
+                         "200": {
+                              "description": "ok",
+                              "schema": {
+                                   "$ref" : "#/definitions/Students"
+                              }
+                         }
+                    }
+               }
+          },
+          "/create": {
+               "post": {
+                    "tags": [
+                         "Students"
+                    ],
+                    "description": "Create a new student in system",
+                    "summary": "Create a new student", 
+                    "parameters" : [
+                         {
+                              "name" : "student",
+                              "in": "body",
+                              "description": "Student that we want to create",
+                              "schema": {
+                                   "$ref" : "#/definitions/Student"
+                              }
+                         }
+                    ],
+                    "produces": [
+                         "application/json"
+                    ],
+                    "responses": {
+                         "201": {
+                              "description": "New Student is created",
+                              "schema":{
+                                   "type" : "string"
+                              }
+                         }
+                    }
+               }
+          },
+          "/single_student/{id}": {
+               "get": {
+                    "tags": [
+                         "Students"
+                    ],
+                    "summary": "Find single student by id", 
+                    "parameters" : [
+                         {
+                              "name" : "id",
+                              "in": "path", 
+                              "required" : "true", 
+                              "schema": {
+                                   "$ref" : "#/definitions/Student"
+                              }
+                         }
+                    ],
+                    "produces": [
+                         "application/json"
+                    ],
+                    "responses": {
+                         "200": {
+                              "description": "ok",
+                              "schema": {
+                                   "$ref" : "#/definitions/Students"
+                              }
+                         }
+                    }
+               }
+          },
+          "/update/{id}": {
+               "put": {
+                    "tags": [
+                         "Students"
+                    ],
+                    "summary": "Update student by id", 
+                    "parameters" : [
+                         {
+                              "name" : "id",
+                              "in": "path",
+                              "required" : "true",
+                              "schema": {
+                                   "type" : "string"
+                              }
+                         },
+                         {
+                              "name" : "name",
+                              "in": "body", 
+                              "required" : "true",
+                              "schema": {
+                                   "$ref" : "#/definitions/Student"
+                              }
+                         }
+                    ], 
+                    "produces": [
+                         "application/json"
+                    ],
+                    "responses": {
+                         "200": {
+                              "description": "ok",
+                              "schema": {
+                                   "$ref" : "#/definitions/Students"
+                              }
+                         }
+                    }
+               }
+          },
+          "/delete/{id}": {
+               "delete": {
+                    "tags": [
+                         "Students"
+                    ],
+                    "summary": "Delete student by id",  
+                    "parameters" : [
+                         {
+                              "name" : "id",
+                              "in": "path", 
+                              "required" : "true",
+                              "schema": {
+                                   "$ref" : "#/definitions/Student"
+                              }
+                         }
+                    ],
+                    "produces": [
+                         "application/json"
+                    ],
+                    "responses": {
+                         "200": {
+                              "description": "ok",
+                              "schema": {
+                                   "$ref" : "#/definitions/Students"
+                              }
+                         }
+                    }
+               }
+          }
+     },
+     
+     "definitions": {
+          "Student": {
+               "required" : [
+                    "student_name",
+                    "student_age",
+                    "student_roll",
+                    "student_email"
+               ],
+               "properties": {
+                    "student_name":{
+                         "type" : "string"
+                    },
+                    "student_age":{
+                         "type" : "number"
+                    },
+                    "student_roll":{
+                         "type" : "number"
+                    },
+                    "student_email":{
+                         "type" : "string"
+                    }
+               }
+          },
+          "StudentViewModel": {
+               "properties": {
+                    "id": {
+                         "type": "string",
+                         "examples" : [
+                              "638c1ac867e53ab9bd85cbff"
+                         ]
+                    },
+                    "student_name": {
+                         "type": "string",
+                         "examples" : [
+                              "Hannan Bhuiyan"
+                         ]
+                    },
+                    "student_age": {
+                         "type": "number",
+                         "examples" : [
+                              "23"
+                         ]
+                    },
+                    "student_roll": {
+                         "type": "number",
+                         "examples" : [
+                              "1001"
+                         ]
+                    },
+                    "student_email": {
+                         "type": "string",
+                         "examples" : [
+                              "hannan@gmail.com"
+                         ]
+                    },
+                    "created_at": {
+                         "type": "string",
+                         "examples" : [
+                              "2022-12-04T03:58:00.268Z"
+                         ]
+                    }
+               }
+          },
+          "Students" : {
+               "type" : "array",
+               "$ref" : "#/definitions/Student"
+          }
+     }
+   }
