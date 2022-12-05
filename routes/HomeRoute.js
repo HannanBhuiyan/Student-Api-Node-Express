@@ -14,10 +14,10 @@ router.use( (req, res, next) => {
 })
 
 
-// internal server error
-// app.use((err, req, res, next) => {
-//      res.status(500).send("Internal server error")
-// })
+//internal server error
+app.use((err, req, res, next) => {
+     res.status(500).send("Internal server error")
+})
 
 
 
